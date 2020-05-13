@@ -1,0 +1,33 @@
+{% extends "cms/base.html" %}
+
+{% block title %}{% endblock title %}
+
+{% block content %}
+<h4 class="mt-4 border-bottom border-primary">キャラ一覧</h4>
+<a href="{% url 'cms:chara_add' r_or_c='register' %}" class="btn btn-primary my-3">登録</a>
+<a href="{% url 'cms:chara_add' r_or_c='create'%}" class="btn btn-primary my-3">新規作成</a>
+<form action="" method="get" class="form-group">
+    <input name="query" value="{{ request.GET.query }}" type="text" class="form-control col-6 col-sm-5 col-md-4 col-lg-3">
+    <button type="submit">検索する</button>
+</form>
+<table class="table table-striped table-borderd">
+    <thead>
+    <tr>
+        <th scope="col">キャラクター名</th>
+        <th scope="col">職業</th>
+        <th scope="col">編集</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for chara in object_list %}
+    <tr>
+        <td><a href="{% url 'cms:chara_detail' pk=chara.pk what='ability' %}">{{chara.name}}</a></td>
+        <td>{{chara.profession|default:"------"}}</a></td>
+        <td>
+            <a href="{% url 'cms:chara_del' pk=chara.pk %}" class="btn btn-danger">削除</a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}

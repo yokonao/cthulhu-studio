@@ -1,0 +1,23 @@
+{% extends "cms/base.html" %}
+{% load bootstrap4 %}
+
+{% block title %}キャラクターの編集{% endblock title %}
+
+{% block content %}
+<h4 class="mt-4 mb-5 border-bottom">キャラクターの編集</h4>
+
+{% if object.pk %}
+<form action="" method="post" enctype="multipart/form-data">
+{% else %}
+<form action="" method="post" enctype="multipart/form-data">
+{% endif %}
+    {% csrf_token %}
+    {% bootstrap_form form layout='horizontal' %}
+    <div class="form-group row">
+        <div class="offset-md-3 col-md-9">
+            <button type="submit" class="btn btn-primary">送信</button>
+        </div>
+    </div>
+</form>
+    <a href="{% url 'cms:chara_list' %}" class="btn btn-secondary btn-sm">戻る</a>
+{% endblock content %}

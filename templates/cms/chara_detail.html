@@ -1,0 +1,99 @@
+{% extends "cms/base.html" %}
+
+{% load i18n static utils %}
+
+{% block extra_css %}
+<!-- detailページ専用のcssを読み込む -->
+<link rel="stylesheet" href="{% static 'cms/css/extra_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-4 thumbnail border border-info">
+            {% if chara.picture %}
+            <img src="{{ chara.picture.url }}" , class="img-responsive">
+            {% else %}
+            <img src="{% static 'cms/sample.png' %}" , class="img-responsive">
+            {% endif %}
+        </div>
+        <div class="col-md-8 col-lg-6 col-xl-5 border border-info">
+            <p class="border-bottom border-primary"><b>プロフィール</b></p>
+            <p>探索者名　：　{{chara.name}}</p>
+            <p>職業　：　{{chara.profession|default:"---"}}</p>
+            <p>学校・学位　：　{{chara.background|default:"---"}}</p>
+            <p>出身　：　{{chara.birthplace|default:"---"}}</p>
+            <p>性別　：　{{chara.gender|default:"---"}}　年齢　：　{{chara.age|default:"--歳"}}</p>
+        </div>
+    </div>
+</div>
+<a href="{% url 'cms:chara_detail' pk=chara.pk what='ability' %}" class="btn btn-secondary">能力値</a>
+<a href="{% url 'cms:chara_detail' pk=chara.pk what='skill' %}" class="btn btn-secondary">技能値</a>
+<a href="{% url 'cms:chara_detail' pk=chara.pk what='freespace' %}" class="btn btn-secondary">自由記入欄</a>
+{% block detail %}
+
+<br><a href="{% url 'cms:chara_edit' pk=chara.pk what=what %}" class="btn btn-primary">修正</a><br>
+
+{% if what == 'ability' %}
+<table class="table table-bordered col-md-12 col-lg-10 col-xl-9">
+    <tbody>
+    {% for ability in abilities %}
+    <tr>
+        {% for key, value in ability.items %}
+        <th scope="row" class="table-active">{{ key }}</th>
+        <td>{{ value }}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<table class="table table-bordered mb-5 col-md-12 col-lg-10 col-xl-9 ">
+    <tbody>
+    <tr>
+        <th scope="row" class="table-active">最大正気度</th>
+        <td>{{ chara.max_sanity_point }}</td>
+        <th scope="row" class="table-active">ダメージ・ボーナス</th>
+        <td>{{ chara.damage_bonus|default:"---" }}</td>
+    </tr>
+    <tr>
+        <th scope="row" class="table-active">職業技能ポイント</th>
+        <td>{{ chara.education | multiply:20}}</td>
+        <th scope="row" class="table-active">任意技能ポイント</th>
+        <td>{{ chara.intelligence | multiply:10 }}</td>
+    </tr>
+    </tbody>
+</table>
+
+{% elif what == 'skill' %}
+<table class="table table-bordered col-md-12 col-lg-10 col-xl-9">
+    <tbody>
+    {% for normalskill in normalskills %}
+    <tr>
+        {% for key, value in normalskill.items %}
+        <th scope="row" class="table-active">{{ key }}</th>
+        <td>{{ value }}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<div class="border border-info　pb-4 mb-5 col-md-12 col-lg-10 col-xl-9">
+    <p><b>追加技能</b>　*自由記入</p>
+    <p>{{ chara.original_skill|default:"------" }}</p>
+    <p></p>
+</div>
+
+{% elif what == 'freespace' %}
+<div class="border border-info　pb-4 mb-5 col-md-12 col-lg-10 col-xl-9">
+    <p><b>自由記入欄</b></p>
+    <p>{{ chara.freespace|default:"------" }}</p>
+    <p></p>
+</div>
+
+{% endif %}
+
+
+{% endblock detail %}
+{% endblock content %}

@@ -1,0 +1,81 @@
+[
+    {
+        "model":"cms.Chara",
+        "fields":{
+            "name":"深谷 祥子",
+            "picture":"test/test1.jpg"
+        }
+    },
+
+    {
+        "model":"cms.Chara",
+        "fields":{
+            "name":"東松 理栄",
+            "picture":"test/test2.jpg"
+        }
+    },
+
+    {
+        "model":"cms.Chara",
+        "fields":{
+            "name":"鷲巣 佳巳",
+            "picture":"test/test3.jpg"
+        }
+    },
+
+    {
+        "model":"cms.Chara",
+        "fields":{
+            "name":"高清水 みれい",
+            "picture":"test/test4.jpg"
+        }
+    },
+
+    {
+        "model":"cms.Chara",
+        "fields":{
+            "name":"上薗 芳野",
+            "picture":"test/test5.jpg"
+        }
+    },
+
+    {
+        "model":"cms.Chara",
+        "fields":{
+            "name":"四ノ宮 佳那子",
+            "picture":"test/test6.jpg"
+        }
+    },
+
+    {
+        "model":"cms.Chara",
+        "fields":{
+            "name":"与儀 紗矢香",
+            "picture":"test/test7.jpg"
+        }
+    },
+
+    {
+        "model":"cms.Chara",
+        "fields":{
+            "name":"冨松 彰子",
+            "picture":"test/test8.jpg"
+        }
+    },
+
+    {
+        "model":"cms.Chara",
+        "fields":{
+            "name":"柳下 瑞紀",
+            "picture":"test/test9.jpg"
+        }
+    },
+
+    {
+        "model":"cms.Chara",
+        "fields":{
+            "name":"名須川 小町",
+            "picture":"test/test10.jpg"
+        }
+    }
+]
