@@ -24,7 +24,7 @@ SECRET_KEY = 'k_$y($%=37zy+o*xd06lpzifoahagj#*122)wn9=b()%lowha='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["13.113.128.197"]
+ALLOWED_HOSTS = ["18.179.147.58"]
 
 # Application definition
 
@@ -74,12 +74,12 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'db',
-        'PORT': 5432,
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'TRPG',  # Database名
+        'USER': 'admin',  # ユーザID
+        'PASSWORD': 'digny2-cuxqYk-sydven',  # ユーザIDのパスワード
+        'HOST': 'db-instance-anthem.cad9toyngvnv.ap-northeast-1.rds.amazonaws.com', 
+        'PORT': '3306',
     }
 }
 
