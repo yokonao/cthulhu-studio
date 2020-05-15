@@ -24,7 +24,7 @@ SECRET_KEY = 'k_$y($%=37zy+o*xd06lpzifoahagj#*122)wn9=b()%lowha='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["18.179.147.58"]
+ALLOWED_HOSTS = ["18.179.147.58", "call-of-cthulhu-studios.com"]
 
 # Application definition
 
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cms.apps.CmsConfig',
     'bootstrap4',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -118,12 +119,31 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 
-STATIC_URL = '/static/'  # これは元からあります。
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-STATIC_ROOT = '/usr/share/nginx/html/static'
+# 同一サーバーから静的ファイルを配信する場合
+# STATIC_URL = '/static/'  # これは元からあります。
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+# STATIC_ROOT = '/usr/share/nginx/html/static'
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = '/usr/share/nginx/html/media'
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = '/usr/share/nginx/html/media'
+
+# 共通の設定
+AWS_ACCESS_KEY_ID = 'AKIA5FWB7BTICTJTPVPO'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'cthulhu-studio'
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',  # 1日はそのキャッシュを使う
+}
+
+
+# 静的ファイルの設定
+AWS_LOCATION = 'static'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+
+
+DEFAULT_FILE_STORAGE = 'config.backends.MediaStorage'
 
 # Default logging for Django. This sends an email to the site admins on every
 # HTTP 500 error. Depending on DEBUG, all other log records are either sent to
