@@ -128,14 +128,14 @@ USE_TZ = True
 
 # 同一サーバーから静的ファイルを配信する場合
 # STATIC_URL = '/static/'  # これは元からあります。
-# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 # STATIC_ROOT = '/usr/share/nginx/html/static'
 
 # MEDIA_URL = '/media/'
 # MEDIA_ROOT = '/usr/share/nginx/html/media'
 
 # 共通の設定
-AWS_ACCESS_KEY_ID = 'AKIA5FWB7BTICTJTPVPO'
+AWS_ACCESS_KEY_ID = 'AKIA5FWB7BTIOGGHSIJL'
 AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = 'cthulhu-studio'
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
