@@ -94,14 +94,14 @@
 
 <div class="border border-info　pb-4 mb-5 col-md-12 col-lg-10 col-xl-9">
     <p><b>追加技能</b>　*自由記入</p>
-    <p>{{ chara.original_skill|default:"------" }}</p>
+    <p>{{ chara.original_skill|linebreaksbr|default:"------" }}</p>
     <p></p>
 </div>
 
 {% elif what == 'freespace' %}
 <div class="border border-info　pb-4 mb-5 col-md-12 col-lg-10 col-xl-9">
     <p><b>自由記入欄</b></p>
-    <p>{{ chara.freespace|default:"------" }}</p>
+    <p>{{ chara.freespace|linebreaksbr|default:"------" }}</p>
     <p></p>
 </div>
 
