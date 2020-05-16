@@ -77,7 +77,7 @@ class Chara(models.Model):  # キャラクターシート
     natural_history = models.IntegerField('博物学', default=10,)
     physics = models.IntegerField('物理学', default=1,)
     disguise = models.IntegerField('変装', default=1,)
-    law = models.IntegerField('回避', default=5,)
+    law = models.IntegerField('法律', default=5,)
     mother_tongue = models.IntegerField('母国語', default=60,)
     eye_star = models.IntegerField('目星', default=25,)
     pharmacy = models.IntegerField('薬学', default=1,)
