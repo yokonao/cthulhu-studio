@@ -4,7 +4,7 @@ from .views import (CharaDetail, CharaList, CharaUpdate, CharaDelete, CharaAdd)
 app_name = 'cms'
 urlpatterns = [
     # 一覧
-    path('chara/', CharaList.as_view(), name='chara_list'),
+    path('', CharaList.as_view(), name='chara_list'),
     # 詳細
     path('chara/detail/<int:pk>/<str:what>/', CharaDetail.as_view(), name='chara_detail'),
     # 追加、登録(r)と新規作成(c)がある、新規作成ならダイスロールで能力値を決定する

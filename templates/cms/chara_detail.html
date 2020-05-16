@@ -79,6 +79,19 @@
     </tbody>
 </table>
 
+<table class="table table-bordered col-md-12 col-lg-10 col-xl-9">
+    <tbody>
+    {% for battleskill in battleskills %}
+    <tr>
+        {% for key, value in battleskill.items %}
+        <th scope="row" class="table-active">{{ key }}</th>
+        <td>{{ value }}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
 <div class="border border-info　pb-4 mb-5 col-md-12 col-lg-10 col-xl-9">
     <p><b>追加技能</b>　*自由記入</p>
     <p>{{ chara.original_skill|default:"------" }}</p>

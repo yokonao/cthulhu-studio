@@ -22,10 +22,9 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('cms/', include('cms.urls'))
+    path('', include('cms.urls'))
 ]
 
 urlpatterns += staticfiles_urlpatterns()
 # urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 # urlpatterns += static(local_settings.MEDIA_URL, document_root=local_settings.MEDIA_ROOT)
-

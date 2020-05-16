@@ -86,7 +86,7 @@ DATABASES = {
         'NAME': 'TRPG',  # Database名
         'USER': 'admin',  # ユーザID
         'PASSWORD': 'digny2-cuxqYk-sydven',  # ユーザIDのパスワード
-        'HOST': 'db-instance-anthem.cad9toyngvnv.ap-northeast-1.rds.amazonaws.com', 
+        'HOST': 'db-instance-anthem.cad9toyngvnv.ap-northeast-1.rds.amazonaws.com',
         'PORT': '3306',
     }
 }

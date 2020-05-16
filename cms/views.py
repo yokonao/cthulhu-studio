@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, reverse
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, UpdateView, CreateView, DeleteView
-from .forms import CharaForm, NormalSkillForm, FreespaceForm
+from .forms import CharaForm, SkillForm, FreespaceForm
 from .models import Chara
 from .chara_create import dice_ability
 from django.http import Http404, HttpResponseRedirect
@@ -11,6 +11,7 @@ from django.db.models import Q
 class CharaList(ListView):
     # キャラシートの一覧
     model = Chara
+    paginate_by = 10
 
     def get_queryset(self):
         q_word = self.request.GET.get('query')
@@ -33,12 +34,11 @@ class CharaDetail(TemplateView):
         what = self.kwargs['what']
         context = {'chara': chara, 'what': what}
         if self.kwargs['what'] == 'ability':
-            abilities = chara.get_ability_triplets()
-            context['abilities'] = abilities
+            context['abilities'] = chara.get_ability_triplets()
             return context
         elif self.kwargs['what'] == 'skill':
-            normalskills = chara.get_normalskill_triplets
-            context['normalskills'] = normalskills
+            context['normalskills'] = chara.get_normalskill_triplets()
+            context['battleskills'] = chara.get_battleskill_triplets()
             return context
         elif self.kwargs['what'] == 'freespace':
             return context
@@ -68,10 +68,10 @@ class CharaAdd(CreateView):
     def form_valid(self, form):
         chara = form.save(commit=False)
         chara.avoidance = chara.dexterity * 2  # 初期値はDEXの2倍
+        chara.mother_tongue = chara.knowledge  # 母国語の初期値は知識と同じ値
         chara.save()  # 技能値は初期値で作成
         self.object = chara
         return HttpResponseRedirect(self.get_success_url())
-        # return redirect('cms:chara_detail', kwargs={'pk': chara.id, 'what': self.kwargs['what']})
 
     def get_success_url(self):
         return reverse('cms:chara_detail', kwargs={'pk': self.object.id,
@@ -86,7 +86,7 @@ class CharaUpdate(UpdateView):
         if self.kwargs['what'] == 'ability':
             return CharaForm
         elif self.kwargs['what'] == 'skill':
-            return NormalSkillForm
+            return SkillForm
         elif self.kwargs['what'] == 'freespace':
             return FreespaceForm
 
